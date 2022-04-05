@@ -5,77 +5,103 @@
 body {
   font-size: 1.5em;
   font-weight: 100;
-  color: rgba(255, 255, 255, 1);
-  background: #222222;
+  background: #F3F3F3;
 }
 
 .calendar {
-  transform: translate3d(0, 0, 0);
-  width: 100vw;
+  width: 70vw;
+  height: 98vh;
+  background: #fff;
+  margin: auto;
+  border-radius: 2rem;
+}
+
+.home{
+  display: flex;
+  height: 100vh;
+}
+
+.month{
+  font-weight: bold;
+  color: #616593;
 }
 
 .header {
   display: flex;
-  padding: 0 1em;
+  padding: .5em 1em;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  background-color: #333;
+  min-width: 13%;
+  max-width: 30%;
 }
 
-.fade-enter {
-  /*overflow: hidden;*/
-  opacity: 0;
-}
-
-.fade-enter-active {
-  animation: fadeIn 1s ease-out;
-  opacity: 1;
-}
-
-.month.in.next {
-  animation: moveFromTopFadeMonth .4s ease-out;
-  opacity: 1;
-}
-
-.month.out.next {
-  animation: moveToTopFadeMonth .4s ease-in;
-  opacity: 1;
-}
-
-.month.in.prev {
-  animation: moveFromBottomFadeMonth .4s ease-out;
-  opacity: 1;
-}
-
-.month.out.prev {
-  animation: moveToBottomFadeMonth .4s ease-in;
-  opacity: 1;
+li{
+  list-style: none;
 }
 
 .dates{
   display: flex;
   flex-wrap: wrap;
+  border-radius: 1rem;
+  width: 98%;
+  margin: auto;
 }
 
 .day {
   width: 14.286%;
+  min-height: 8.6rem;
   padding: 1em;
   text-align: center;
   cursor: pointer;
+  background: #fff;
+  border-radius: .5rem;
+  border: 1px solid #f3f3f3;
+  position: relative;
+  &:nth-child(7n-1){
+    span{
+      color: #05329f;
+      opacity: .3;
+    }
+  }
+  &:nth-child(7n){
+    span{
+      color: #05329f;
+      opacity: .3;
+    }
+  }
+  span{
+    position: absolute;
+    top: .3rem;
+    right: .3rem;
+    font-weight: bold;
+    color: #343434;
+  }
+}
+
+.last-month-day{
+  background: #eeeeee;
 }
 
 .dow{
   width: 14.286%;
   text-align: center;
   padding: 1em;
-  color: teal;
+  color: #383838;
   font-weight: bold;
+  text-align: right;
+  align-items: flex-end;
+  justify-content: flex-end;
+  display: flex;
+  padding-right: 0;
 }
 
 .today {
-  color: teal;
+  color: #616593 !important;
   font-weight: bold;
+  border: 2px solid #b9b9b9;
+  span{
+    color: #09ad4d !important;
+  }
 }
 
 .day-name {
@@ -91,43 +117,76 @@ body {
   letter-spacing: 1.5px;
 }
 
-@keyframes moveFromTopFade {
-  from { height:0px; margin-top:0px; transform: translateY(-100%); }
+.arrow-switch{
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: .3rem;
+  transition: .3s;
+  path{
+    transition: .3s;
+  }
+  &:hover{
+    background: #616593;
+    path{
+      fill: #fff
+    }
+  }
+  &-right{
+    transform: rotate(180deg);
+    margin-right: 0;
+    margin-left: 1rem;
+  }
 }
-
-
-@keyframes moveToTopFade {
-  to { height:0px; transform: translateY(-100%); }
+.past-day{
+  background: #eeeeee;
+  span{
+    opacity: .5;
+  }
 }
-
-@keyframes moveToTopFadeMonth {
-  to { opacity: 0; -moz-transform: translateY(-30%); }
+.events{
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 2.2rem;
+  left: .5rem;
 }
-
-@keyframes moveFromTopFadeMonth {
-  from { opacity: 0; -moz-transform: translateY(30%); }
+.events-container{
+  &-item{
+    font-size: 1rem;
+    text-align: left;
+    border-radius: .2rem;
+    padding: .2rem;
+    margin-bottom: .2rem;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 10;
+    position: unset;
+    transition: .3s;
+    &:hover{
+      position: relative;
+      max-width: min-content;
+      width: min-content;
+    }
+    &.low{
+      background: #E4F1EB;
+      color: #96D8AD;
+    }
+    &.medium{
+      background: #F9E7D3;
+      color: #DEB58A;
+    }
+    &.high{
+      background: #F8EAEA;
+      color: #D48D91;
+    }
+  }
 }
-
-@keyframes moveToBottomFadeMonth {
-  to { opacity: 0; -webkit-transform: translateY(30%); }
-}
-
-@keyframes moveFromBottomFadeMonth {
-  from { opacity: 0; -webkit-transform: translateY(-30%); }
-}
-
-@keyframes fadeIn  {
-  from { opacity: 0; }
-}
-
-@keyframes fadeOut  {
-  to { opacity: 0; }
-}
-
-@keyframes fadeOutShink  {
-  to { opacity: 0; padding: 0px; height: 0px; }
-}
-
 
 *{
   padding: 0;
